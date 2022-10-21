@@ -17,5 +17,60 @@ public class Punch {
     private LocalDateTime timestamp, adjustedtimestamp;
     private Badge badge;
     private LocalTime adjustedtime;
+
+    public Punch(int terminalid, int id, int eventtypeid, PunchAdjustmentType punchtypeid, String badgeid, String adjustmenttype, LocalDateTime timestamp, LocalDateTime adjustedtimestamp, Badge badge, LocalTime adjustedtime) {
+        this.terminalid = terminalid;
+        this.id = id;
+        this.eventtypeid = eventtypeid;
+        this.punchtypeid = punchtypeid;
+        this.badgeid = badgeid;
+        this.adjustmenttype = adjustmenttype;
+        this.timestamp = timestamp;
+        this.adjustedtimestamp = adjustedtimestamp;
+        this.badge = badge;
+        this.adjustedtime = adjustedtime;
+    }
+
+    public int getTerminalid() {
+        return terminalid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getEventtypeid() {
+        return eventtypeid;
+    }
+
+    public PunchAdjustmentType getPunchtypeid() {
+        return punchtypeid;
+    }
+
+    public String getBadgeid() {
+        return badgeid;
+    }
+
+    public String getAdjustmenttype() {
+        return adjustmenttype;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public LocalDateTime getAdjustedtimestamp() {
+        return adjustedtimestamp;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public LocalTime getAdjustedtime() {
+        return adjustedtime;
+    }
+    
+    
     
 }
