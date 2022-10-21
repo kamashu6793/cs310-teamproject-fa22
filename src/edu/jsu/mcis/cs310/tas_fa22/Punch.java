@@ -2,34 +2,43 @@ package edu.jsu.mcis.cs310.tas_fa22;
 
  import java.time.LocalDateTime;
  import java.sql.*;
- import java.time.DayOfWeek;
- import java.time.LocalDate;
  import java.time.LocalTime;
  import java.time.format.DateTimeFormatter;
  import java.util.HashMap;
- import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class Punch {
     
     private int terminalid, id, eventtypeid;
     private PunchAdjustmentType punchtypeid;
     private String badgeid, adjustmenttype;
-    private LocalDateTime timestamp, adjustedtimestamp;
+    private LocalDateTime originaltimestamp, adjustedtimestamp;
     private Badge badge;
-    private LocalTime adjustedtime;
-
-    public Punch(int terminalid, int id, int eventtypeid, PunchAdjustmentType punchtypeid, String badgeid, String adjustmenttype, LocalDateTime timestamp, LocalDateTime adjustedtimestamp, Badge badge, LocalTime adjustedtime) {
-        this.terminalid = terminalid;
-        this.id = id;
-        this.eventtypeid = eventtypeid;
-        this.punchtypeid = punchtypeid;
-        this.badgeid = badgeid;
-        this.adjustmenttype = adjustmenttype;
-        this.timestamp = timestamp;
-        this.adjustedtimestamp = adjustedtimestamp;
+    
+    public Punch(HashMap<String, String> params, Badge badge) {
+        this.id = Integer.parseInt(params.get("id"));
+        this.terminalid = Integer.parseInt(params.get("terminalid"));
+        this.badgeid = params.get("badgeid");
+        this.originaltimestamp = LocalDateTime.parse(params.get("timestamp"));
+        this.eventtypeid = Integer.parseInt(params.get("eventtypeid"));
+        this.punchtypeid = PunchAdjustmentType.values()[Integer.parseInt(params.get("eventtypeid"))];
         this.badge = badge;
-        this.adjustedtime = adjustedtime;
+        
+        this.adjustedtimestamp = originaltimestamp;
+
     }
+    
+    public Punch(int terminalid, Badge badge, int eventtypeid) {
+        this.terminalid = terminalid;
+        this.eventtypeid = eventtypeid;
+        this.badge = badge;
+        java.sql.Timestamp timestamp1 = new Timestamp(new java.util.Date().getTime());
+        LocalDateTime local = timestamp1.toLocalDateTime();
+        local = local.withSecond(0).withNano(0);
+        this.originaltimestamp = local;
+        this.adjustedtimestamp = null;
+
+    }
+    
 
     public int getTerminalid() {
         return terminalid;
@@ -55,8 +64,8 @@ public class Punch {
         return adjustmenttype;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public LocalDateTime getOriginaltimestamp() {
+        return originaltimestamp;
     }
 
     public LocalDateTime getAdjustedtimestamp() {
@@ -66,11 +75,5 @@ public class Punch {
     public Badge getBadge() {
         return badge;
     }
-
-    public LocalTime getAdjustedtime() {
-        return adjustedtime;
-    }
-    
-    
-    
+  
 }

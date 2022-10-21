@@ -12,7 +12,7 @@ import org.json.simple.*;
 // Ryan Benton
 // Ahmed Alkhawaja
 public class Main {
-
+    
     public static void main(String[] args) {
         
         // test database connectivity; get DAOs
