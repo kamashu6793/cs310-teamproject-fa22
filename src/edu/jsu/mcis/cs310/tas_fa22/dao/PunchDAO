@@ -1,0 +1,41 @@
+public class Punch {
+
+private int id;
+private int terminalid;
+private Badge badge;
+private LocalDateTime originaltimestamp;
+private LocalDateTime adjustedtimestamp;
+private EventType punchtype;
+
+public Punch(int terminalid, Badge badge, EventType punchtype) {
+this.terminalid = terminalid;
+this.badge = badge;
+this.punchtype = punchtype;
+}
+
+public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
+this.id = id;
+this.terminalid = terminalid;
+this.badge = badge;
+this.originaltimestamp = originaltimestamp;
+this.punchtype = punchtype;
+}
+
+public int getId() {
+return id;
+}
+
+public void setId(int id) {
+this.id = id;
+}
+
+public int getTerminalid() {
+return terminalid;
+}
+
+public void setTerminalid(int terminalid) {
+this.terminalid = terminalid;
+}
+
+public Badge getBadge() {
+return badge;
